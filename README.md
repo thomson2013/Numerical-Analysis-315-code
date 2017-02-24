@@ -17,7 +17,22 @@ Contains the code for the PoissonMat, PoissonSolve, and Wilkinson functions
 
   PoissonSolve function:
   
-  
+        function z = PoissonSolve(n,f)
+        z = zeros(n,1); 
+        A = zeros(n,n);
+        h = 1/(n+1);
+        sum = 0;
+        for i = 1:n
+                sum = sum + (i*f(i));
+        end
+        z(n) = (sum*(h^2))/(n+1);
+        for i = (n-1):-1:1
+                if i == n-1
+                        z(i) = (2*z(i+1))-(f(i+1)*(h^2));
+                else
+                        z(i) = (2*z(i+1))-z(i+2)-(f(i+1)*(h^2));
+                end
+        end
   
   Wilkinson function:
   
