@@ -35,6 +35,7 @@ Contains the code for the PoissonMat, PoissonSolve, and Wilkinson functions
         end
         
   Naive Poisson solver and timer
+      
         n=100;
         %n is the size of the matrix and length of f
         f = zeros(n,1);
