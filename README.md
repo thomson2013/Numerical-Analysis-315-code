@@ -33,6 +33,25 @@ Contains the code for the PoissonMat, PoissonSolve, and Wilkinson functions
                         z(i) = (2*z(i+1))-z(i+2)-(f(i+1)*(h^2));
                 end
         end
+        
+  Naive Poisson solver and timer
+        n=100;
+        %n is the size of the matrix and length of f
+        f = zeros(n,1);
+        for i = 1:n
+                f(i) = sin(i/2*pi);
+        end
+        A = PoissonMat(n);
+        tic
+        h = 1/(n+1);
+        b = h*h*f;
+        y = A \ b;
+        NaiveTime = toc
+        
+        tic
+        z = PoissonSolve(n,f);
+        fastTime = toc
+       
   
   Wilkinson function:
   
